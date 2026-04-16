@@ -9,19 +9,17 @@ import { redirect } from "next/navigation";
 // import { WhatsNewSection } from "@/components/landing/sections/whats-new-section";
 
 export default function LandingPage() {
-  return (
-    redirect("/workspace")
-    // <div className="min-h-screen w-full bg-[#0a0a0a]">
-    //   <Header />
-    //   <main className="flex w-full flex-col">
-    //     <Hero />
-    //     <CaseStudySection />
-    //     <SkillsSection />
-    //     <SandboxSection />
-    //     <WhatsNewSection />
-    //     <CommunitySection />
-    //   </main>
-    //   <Footer />
-    // </div>
-  );
+  return redirect("/workspace");
+  // <div className="min-h-screen w-full bg-[#0a0a0a]">
+  //   <Header />
+  //   <main className="flex w-full flex-col">
+  //     <Hero />
+  //     <CaseStudySection />
+  //     <SkillsSection />
+  //     <SandboxSection />
+  //     <WhatsNewSection />
+  //     <CommunitySection />
+  //   </main>
+  //   <Footer />
+  // </div>
 }
