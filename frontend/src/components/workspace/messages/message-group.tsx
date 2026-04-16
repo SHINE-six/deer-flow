@@ -52,9 +52,7 @@ export function MessageGroup({
   const [showAbove, setShowAbove] = useState(
     env.NEXT_PUBLIC_STATIC_WEBSITE_ONLY === "true",
   );
-  const [showLastThinking, setShowLastThinking] = useState(
-    env.NEXT_PUBLIC_STATIC_WEBSITE_ONLY === "true",
-  );
+  const [showLastThinking, setShowLastThinking] = useState(true);
   const steps = useMemo(() => convertToSteps(messages), [messages]);
   const lastToolCallStep = useMemo(() => {
     const filteredSteps = steps.filter((step) => step.type === "toolCall");
