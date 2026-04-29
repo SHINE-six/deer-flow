@@ -104,12 +104,16 @@ def resolve_agent_factory(assistant_id: str | None):
     Custom agents are implemented as ``lead_agent`` + an ``agent_name``
     injected into ``configurable`` or ``context`` — see
     :func:`build_run_config`.  All ``assistant_id`` values therefore map to the
-    same factory; the routing happens inside ``make_lead_agent`` when it reads
+    same factory; the routing happens inside ``build_lead_agent`` when it reads
     ``cfg["agent_name"]``.
-    """
-    from deerflow.agents.lead_agent.agent import make_lead_agent
 
-    return make_lead_agent
+    Returns :func:`build_lead_agent` (not ``make_lead_agent``): the harness run
+    worker accepts an optional ``app_config`` kwarg, which the LangGraph factory
+    entry point cannot expose without breaking LangGraph's signature inspection.
+    """
+    from deerflow.agents.lead_agent.agent import build_lead_agent
+
+    return build_lead_agent
 
 
 def build_run_config(

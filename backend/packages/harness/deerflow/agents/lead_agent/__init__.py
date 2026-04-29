@@ -1,3 +1,3 @@
-from .agent import make_lead_agent
+from .agent import build_lead_agent, make_lead_agent
 
-__all__ = ["make_lead_agent"]
+__all__ = ["build_lead_agent", "make_lead_agent"]

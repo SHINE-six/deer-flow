@@ -314,7 +314,20 @@ def _build_middlewares(
     return middlewares
 
 
-def make_lead_agent(config: RunnableConfig, app_config: AppConfig | None = None):
+def make_lead_agent(config: RunnableConfig):
+    """LangGraph-compatible factory entry point (registered in ``langgraph.json``).
+
+    LangGraph's API server inspects this signature and rejects any parameters
+    other than ``RunnableConfig`` / ``ServerRuntime``, so this wrapper delegates
+    to :func:`build_lead_agent` with no explicit ``app_config``. Callers that
+    have an ``AppConfig`` already resolved (e.g. the harness run worker) should
+    call :func:`build_lead_agent` directly to avoid redundant ``get_app_config``
+    lookups.
+    """
+    return build_lead_agent(config)
+
+
+def build_lead_agent(config: RunnableConfig, *, app_config: AppConfig | None = None):
     # Lazy import to avoid circular dependency
     from deerflow.tools import get_available_tools
     from deerflow.tools.builtins import setup_agent
