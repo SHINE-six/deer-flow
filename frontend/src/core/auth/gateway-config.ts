@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const gatewayConfigSchema = z.object({
   internalGatewayUrl: z.string().url(),
-  trustedOrigins: z.array(z.string()).min(1),
+  trustedOrigins: z.array(z.string()),
 });
 
 export type GatewayConfig = z.infer<typeof gatewayConfigSchema>;
@@ -27,7 +27,7 @@ export function getGatewayConfig(): GatewayConfig {
         .filter(Boolean)
     : isDev
       ? ["http://localhost:3000"]
-      : undefined;
+      : [];
 
   _cached = gatewayConfigSchema.parse({ internalGatewayUrl, trustedOrigins });
   return _cached;
